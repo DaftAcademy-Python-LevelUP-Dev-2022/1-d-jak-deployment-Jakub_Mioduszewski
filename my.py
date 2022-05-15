@@ -35,7 +35,7 @@ def name_and_number(name: str, number: int, response:Response):
 from pydantic import BaseModel
 from datetime import datetime
 event = {
-    "id":-1, 'name': 'Pierwszy Dzień Wiosny', 'date': '2022-03-01', 'date_added': 0
+    "id":-1, 'name': None, 'date': None, 'date_added': None
 
 }
 class CalendarIn(BaseModel):
@@ -59,7 +59,7 @@ async def event_on_date(date: str, response: Response):
         response.status_code = status.HTTP_400_BAD_REQUEST
     else:
         if date in event['date']:
-            return event
+            return [event]
         else:
             response.status_code = status.HTTP_404_NOT_FOUND
     return response.status_code
