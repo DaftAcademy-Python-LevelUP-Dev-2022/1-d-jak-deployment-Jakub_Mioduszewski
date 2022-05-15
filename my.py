@@ -54,7 +54,7 @@ def calendar(item: CalendarIn,response: Response):
 
     return event
 @app.get("/event/{date}")
-def event_on_date(item: CalendarOut,date:str,response: Response):
+def event_on_date(date:str,response: Response):
     if event['date'] == date:
         return event
     elif type(date) != str:
