@@ -53,12 +53,13 @@ def calendar(item: CalendarIn,response: Response):
     event.update({"id":new_id, "name":item.event,"date":item.date,'date_added':day})
 
     return event
-@app.get("/events/{date}",response_model=CalendarOut)
+@app.get("/event/{date}")
 def event_on_date(item: CalendarOut,date:str,response: Response):
     if event['date'] == date:
         return event
-    elif type(data) != str:
+    elif type(date) != str:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return response.status_code
     else:
         response.status_code = status.HTTP_404_NOT_FOUND
+        return response.status_code
