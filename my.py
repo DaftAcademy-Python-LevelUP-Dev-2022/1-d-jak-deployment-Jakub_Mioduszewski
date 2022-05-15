@@ -33,13 +33,14 @@ def name_and_number(name: str, number: int, response:Response):
 from pydantic import BaseModel
 class Calendar(BaseModel):
 
-    event: str
+    name: str
     date: str
+    date_added: str = None
 import datetime
 @app.put('/event')
 def create_calendar(item: Calendar):
     item_dict = item.dict()
-    if item.event:
-        date_now = datetime.date(datetime.now())
-        item_dict.update({"date_added":date_now})
+
+    date_now = datetime.date(datetime.now())
+    item_dict.update({"date_added":date_now})
     return item_dict
