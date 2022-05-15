@@ -35,7 +35,7 @@ def name_and_number(name: str, number: int, response:Response):
 from pydantic import BaseModel
 from datetime import datetime
 event = {
-    "id":-1, 'name': None, 'date': None, 'date_added': 0
+    "id":-1, 'name': 'Pierwszy Dzień Wiosny', 'date': '2022-03-01', 'date_added': 0
 
 }
 class CalendarIn(BaseModel):
