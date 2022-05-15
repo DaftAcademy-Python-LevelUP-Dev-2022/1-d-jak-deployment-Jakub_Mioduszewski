@@ -24,9 +24,18 @@ from fastapi import Response,status
 days = {'monday':1,'tuesday':2,'wednesday':3,'thursday':4,'friday':5,'saturday':6,'sunday':7}
 @app.get('/day/',status_code=400)
 def name_and_number(name: str, number: int, response:Response):
-    if name in days:
-        if number == days[name]:
-            response.status_code = status.HTTP_200_OK
-        else:
-            response.status_code = status.HTTP_400_BAD_REQUEST
+
+    if number == days[name]:
+        response.status_code = status.HTTP_200_OK
+    else:
+        response.status_code = status.HTTP_400_BAD_REQUEST
     return response.status_code
+from pydantic import BaseModel
+class Calendar(BaseModel):
+    id: int = None
+    event: str
+    date: str
+    date_added: str
+@app.put('/event')
+def create_calendar(item: Calendar):
+    return item
