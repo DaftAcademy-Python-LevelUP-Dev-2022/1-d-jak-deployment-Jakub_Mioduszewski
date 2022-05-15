@@ -42,7 +42,7 @@ class CalendarIn(BaseModel):
     date: str
     event: str
 class CalendarOut(BaseModel):
-    id: int = 0
+    id: int = -1
     name: str
     date: str
     date_added: str
