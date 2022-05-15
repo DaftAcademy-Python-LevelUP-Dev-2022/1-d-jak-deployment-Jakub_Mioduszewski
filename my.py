@@ -53,10 +53,11 @@ def calendar(item: CalendarIn,response: Response):
     event.update({"id":new_id, "name":item.event,"date":item.date,'date_added':day})
 
     return event
-@app.get("/event/{date}",status_code=200)
-async def event_on_date(date):
+@app.get("/event/{date}")
+async def event_on_date(date,response: Response):
     if date in event['date']:
-        return event
+        response.status_code= status.HTTP_200_OK
+        return event and response.status_code
     else:
         return f'Cos nie tak'
 
