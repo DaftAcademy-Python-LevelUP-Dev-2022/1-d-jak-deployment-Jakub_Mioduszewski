@@ -35,7 +35,7 @@ def name_and_number(name: str, number: int, response:Response):
 from pydantic import BaseModel
 from datetime import datetime
 event = {
-    "id":0, 'name': None, 'date': None, 'date_added': 0
+    "id":-1, 'name': None, 'date': None, 'date_added': 0
 
 }
 class CalendarIn(BaseModel):
@@ -46,9 +46,9 @@ class CalendarOut(BaseModel):
     name: str
     date: str
     date_added: str
-@app.put("/event",response_model=CalendarOut,status_code=200)
-def calendar(item: CalendarIn):
+@app.put("/event",response_model=CalendarOut)
+def calendar(item: CalendarIn,response: Response):
     new_id = event['id'] + 1
     day = datetime.date(datetime.now()).isoformat()
     event.update({"id":new_id, "name":item.event,"date":item.date,'date_added':day})
-    return event
+    return event, status.HTTP_200_OK
