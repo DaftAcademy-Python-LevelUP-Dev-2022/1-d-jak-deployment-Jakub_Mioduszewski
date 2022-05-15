@@ -48,6 +48,6 @@ class CalendarOut(BaseModel):
 @app.put("/event",response_model=CalendarOut)
 def calendar(item: CalendarIn):
     new_id = event['id'] + 1
-    day = event['date_added'] + 1
+    day = event['date_added'] + 2
     event.update({"id":new_id "name":item.name,"date":item.date,'date_added':day})
     return event
