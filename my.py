@@ -54,7 +54,7 @@ def calendar(item: CalendarIn,response: Response):
 
     return event
 @app.get("/event/{date}")
-async def event_on_date(date: datetime.date,response: Response):
+async def event_on_date(date):
     return f'Date = {date}'
 
 
