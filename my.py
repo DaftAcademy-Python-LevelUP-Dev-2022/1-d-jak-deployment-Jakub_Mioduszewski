@@ -41,4 +41,4 @@ def create_calendar(item: Calendar):
     item_dict = item.dict()
     if item.event:
         date_now = datetime.date(datetime.now())
-        item_dict.update({"date_added":date_now.isofortmat()})
+        item_dict.update({"date_added":date_now})
