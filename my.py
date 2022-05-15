@@ -55,7 +55,10 @@ def calendar(item: CalendarIn,response: Response):
     return event
 @app.get("/event/{date}")
 async def event_on_date(date):
-    return f'type of date = {type(date)}'
+    if date in event['date']:
+        return event
+    else:
+        return f'Cos nie tak'
 
 
 
