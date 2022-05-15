@@ -46,10 +46,10 @@ class CalendarOut(BaseModel):
     name: str
     date: str
     date_added: str
-@app.put("/events",response_model=CalendarOut)
+@app.put("/events",response_model=CalendarOut,status_code=200)
 def calendar(item: CalendarIn,response: Response):
     new_id = event['id'] + 1
     day = datetime.date(datetime.now()).isoformat()
     event.update({"id":new_id, "name":item.event,"date":item.date,'date_added':day})
-    response.status_code = status.HTTP_200_OK
-    return event, response.status_code
+
+    return event
