@@ -42,3 +42,4 @@ def create_calendar(item: Calendar):
     if item.event:
         date_now = datetime.date(datetime.now())
         item_dict.update({"date_added":date_now})
+    return item_dict
