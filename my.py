@@ -50,5 +50,5 @@ class CalendarOut(BaseModel):
 def calendar(item: CalendarIn):
     new_id = event['id'] + 1
     day = dt.now().isoformat().split("T")
-    event.update({"id":new_id, "name":item.name,"date":item.date,'date_added':day[0]})
+    event.update({"id":new_id, "name":item.name,"date":item.date,'date_added':day})
     return event
