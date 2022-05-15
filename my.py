@@ -44,5 +44,6 @@ class CalendarOut(BaseModel):
     date_added: str
 @app.put("/event",response_model=CalendarOut)
 def calendar(item: CalendarIn):
-    CalendarOut.date_added = datetime.date(datetime.now())
+    item_dict = item.dict()
+    item_dict.update({"id": CalendarOut.id + 1})
     return item
