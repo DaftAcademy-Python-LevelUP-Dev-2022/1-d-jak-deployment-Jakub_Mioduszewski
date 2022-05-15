@@ -1,3 +1,5 @@
+import datetime
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -39,6 +41,8 @@ class CalendarOut(BaseModel):
     id: int = 0
     name: str
     date: str
+    date_added: str
 @app.put("/event",response_model=CalendarOut)
 def calendar(item: CalendarIn):
+    CalendarOut.date_added = datetime.date(datetime.now())
     return item
