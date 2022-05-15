@@ -51,4 +51,5 @@ def calendar(item: CalendarIn,response: Response):
     new_id = event['id'] + 1
     day = datetime.date(datetime.now()).isoformat()
     event.update({"id":new_id, "name":item.event,"date":item.date,'date_added':day})
-    return event, status.HTTP_200_OK
+    response.status_code = status.HTTP_200_OK
+    return event, response.status_code
