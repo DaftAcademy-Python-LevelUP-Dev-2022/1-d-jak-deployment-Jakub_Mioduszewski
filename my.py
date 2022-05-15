@@ -33,7 +33,10 @@ def name_and_number(name: str, number: int, response:Response):
         response.status_code = status.HTTP_400_BAD_REQUEST
     return response.status_code
 from pydantic import BaseModel
+event = {
+    "id":0, 'name': None, 'date': None, 'date_added': 0
 
+}
 class CalendarIn(BaseModel):
     date: str
     name: str
@@ -43,7 +46,8 @@ class CalendarOut(BaseModel):
     date: str
     date_added: str
 @app.put("/event",response_model=CalendarOut)
-def calendar(item: CalendarOut):
-    item_dict = item.dict()
-    item_dict.update({"id": CalendarOut.id + 1})
-    return item
+def calendar(item: CalendarIn):
+    new_id = event['id'] + 1
+    day = event['date_added'] + 1
+    event.update({"id":new_id "name":item.name,"date":item.date,'date_added':day})
+    return event
