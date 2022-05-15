@@ -31,24 +31,14 @@ def name_and_number(name: str, number: int, response:Response):
         response.status_code = status.HTTP_400_BAD_REQUEST
     return response.status_code
 from pydantic import BaseModel
-class Calendar_In(BaseModel):
 
-    date: str = None
-    name: str = None
-class Calendar_Out(BaseModel):
+class CalendarIn(BaseModel):
+    date: str
+    name: str
+class CalendarOut(BaseModel):
     id: int = 0
-    name: str = None
-    date: str = None
-    date_added: str = None
-import datetime
-@app.put('/event',response_model=Calendar_Out)
-def create_calendar(item: Calendar_In):
-    item_dict = item.dict()
-    out_dict = Calendar_Out.dict()
-    out_dict.update(({'id':id + 1}))
-    out_dict.upadate({'name':item_dict.name})
-    out_dict.update({'date':item_dict.date})
-
-    date_now = datetime.date(datetime.now())
-    out_dict.update({"date_added":date_now})
-    return out_dict
+    name: str
+    date: str
+@app.put("/event",response_model=CalendarOut)
+def calendar(item: CalendarIn):
+    return item
