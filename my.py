@@ -54,9 +54,8 @@ def calendar(item: CalendarIn,response: Response):
 
     return event
 @app.get("/event/{date}")
-def event_on_date(date: datetime.data,response: Response):
-    if event['date'] == date:
-        return event
-    else:
-        response.status_code = status.HTTP_400_BAD_REQUEST
-        return response.status_code
+async def event_on_date(date: datetime.data,response: Response):
+    return f'Date = {date}'
+
+
+
