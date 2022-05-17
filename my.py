@@ -53,9 +53,10 @@ def calendar(item: CalendarIn,response: Response):
     event.update({"id":new_id, "name":item.event,"date":item.date,'date_added':day})
 
     return event
-@app.get("/events/{date}",status_code=200)
+@app.get("/events/{date}")
 async def event_on_date(date: str, response: Response):
-    if type(date) != str:
+    x = date.split('-')
+    if int(x[1]) > 12 or int(x[2]) > 31:
         response.status_code = status.HTTP_400_BAD_REQUEST
     else:
         if date in event['date']:
